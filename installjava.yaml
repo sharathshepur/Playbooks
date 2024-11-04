@@ -1,0 +1,13 @@
+---
+- hosts: all
+  become: true
+  tasks: 
+  - name: Install java
+    apt: name="{{JavaPackageVersion}}"
+  - name: Get the Java JavaPackageVersion
+    shell: java -version 2>&1 | grep version | awk '{print $3}' | sed 's/"//'
+    register: javaversion
+  - name: Display java version
+    debug: 
+      var: javaversion.stdout
+...
