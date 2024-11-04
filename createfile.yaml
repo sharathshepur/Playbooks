@@ -1,0 +1,12 @@
+---
+- hosts: all
+  become: true
+  tasks: 
+  - name: create a file
+    file: 
+     path: /tmp/sharath.sh
+     mode: 0777
+     state: touch
+     owner: ubuntu
+     group: ubuntu
+...
