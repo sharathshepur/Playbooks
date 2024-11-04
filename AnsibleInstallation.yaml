@@ -1,0 +1,47 @@
+Install ansible in ubuntu 22.04 LTS server
+------------------------------------------
+
+1) sudo apt update
+2) sudo apt install software-properties-common
+3) sudo apt-add-repository -y ppa:ansible/ansible
+4) sudo apt update
+5) sudo apt install ansible -y
+6) ansible --version      --> to check the ansible version
+
+7)sudo useradd ansible
+8)sudo passwd ansible
+9)visudo
+
+ansible ALL=(ALL) NOPASSWD: ALL
+
+10) vi /etc/ssh/sshd_config
+11) sudo apt update
+12) sudo apt install openssh-server
+13) sudo systemctl start ssh.service
+14) sudo systemctl status ssh.service
+
+15 )ansible -m ping localhost
+
+
+localhost | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+
+
+---------------------------------------------------------------------------------------------
+To connect the node servers to  localhost
+-----------------------------------------
+16) cd /home/
+17)	mkdir ubuntu
+18)	vi key.pem 
+	
+	add pem file password in key.pem file
+
+19) sudo vi /etc/ansible/hosts
+
+worker1 ansible_host=3.75.184.135 ansible_ssh_private_key_file=/home/ubuntu/key.pem --> ubuntu server
+
+localhost ansible_host=3.79.15.7 ansible_ssh_private_key_file=/home/ubuntu/key.pem --> ubuntu server
+
+54.93.236.67 ansible_user=ec2-user ansible_ssh_private_key_file=/home/ubuntu/key.pem --> for redhat server
