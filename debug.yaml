@@ -1,0 +1,9 @@
+---
+- hosts: all
+  vars:
+   name: SBS
+  tasks: 
+  - name: Display the variable name of value
+    debug:
+     msg: "The variable value is {{name}}"
+...
