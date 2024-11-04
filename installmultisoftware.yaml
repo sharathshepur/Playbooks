@@ -1,0 +1,21 @@
+---
+- hosts: all
+  become: true
+  tasks: 
+  - name: Install Git software
+    apt: 
+      name: git
+      state: present
+  - name: install apache2 server
+    apt: 
+      name: apache2
+      state: present
+  - name: Install tree 
+    apt: 
+      name: tree
+      state: present
+  - name: Install Unzip
+    apt: 
+      name: unzip
+      state: present
+...
