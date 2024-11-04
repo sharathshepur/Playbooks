@@ -1,0 +1,16 @@
+---
+- hosts: all 
+  gather_facts: yes
+  become: true
+  tasks: 
+  - name: Install git on redhat server
+    yum: 
+      name: git 
+      state: present
+    when: ansible_os_family == "RedHat"
+  - name: Install git on ubuntu server
+    apt: 
+      name: git
+      state: present
+    when: ansible_os_family == "Debian"
+...
