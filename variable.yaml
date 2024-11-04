@@ -1,0 +1,24 @@
+---
+- hosts: all
+  become: true
+  vars_files:
+  - variable.yaml
+   
+  tasks: 
+  - name: Install appache server
+    apt:
+     name: apache2
+     state: latest
+  - name: copy httml code
+    template:
+      src: index.html
+      dest: /var/www/html/index.html
+    notify:
+    - Restart apache2 server
+  handlers:
+  - name: Restart apache2 server
+    service:
+      name: apache2
+      state: restarted
+      enabled: yes
+...
