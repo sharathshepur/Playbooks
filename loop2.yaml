@@ -1,0 +1,8 @@
+---
+- hosts: all
+  become: true
+  tasks: 
+  - name: install the list of packages
+    apt: 
+      name: ['git','tar','curl','wget','nano']
+...
