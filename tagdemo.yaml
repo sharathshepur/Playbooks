@@ -1,0 +1,24 @@
+---
+- hosts: all
+  become: true
+  tasks: 
+  - name: Install apache httpd
+    tags: 
+    - install 
+    apt:
+     name: apache2
+     state: latest
+  - name: copy index.html
+    tags: 
+    - copy 
+    copy:
+     src: index.html
+     dest: /var/www/html/index.html
+  - name: start the httpd module
+    tags: 
+    - start
+    service: 
+     name: apache2
+     state: started
+     enabled: true
+...
